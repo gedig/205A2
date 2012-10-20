@@ -3,6 +3,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtGui>
+#include <QtOpenGL>
+#include <QDebug>
+#include <QButtonGroup>
+#include <QComboBox>
+
+#include "imagedata.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -22,12 +29,15 @@ public:
 
 private slots:
     void openFile(int left);
-    void colorStatistics();
+    void histoCall(QString comboItemName);
 
 private:
     void createActions();
     void createMenus();
-
+    void greyScaleHisto(ImageData histoInfo);
+    void redHisto(int left);
+    void greenHisto(int left);
+    void blueHisto(int left);
 
     QWidget *centralWidget;
 
@@ -36,13 +46,21 @@ private:
     QLabel *imageLabel;
     QLabel *imageLabel2;
 
+    QLabel *statsDisplay;
+    QLabel *statsDisplay2;
+
+    ImageData leftData;
+    ImageData rightData;
+
     QMenu *fileMenu;
 
     QAction *exitAct;
 
     QString filename;
 
+
     QImage *refImage;
+
 };
 
 #endif
