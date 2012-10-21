@@ -9,25 +9,31 @@ class ImageData
 {
 public:
     ImageData();
-    ImageData(QImage *newImage);
+    ImageData(int newId);
 
     ~ImageData();
 
+    int getId();
     void setImage(QImage *tempImage);
+    QImage getImage();
     void populateArrays();
+    void getColourArray(int toCopy[256], int colour);
+    void histoMatch(int cumulativeCopy[]);
     bool isNull();
+
 
 
 private:
     QImage storedImage;
-    int grey[256];
-    int red[256];
-    int green[256];
-    int blue[256];
 
-    int maxValue;
-    int minValue;
-    float totalValue;
+    int id;
+    int greyArray[256];
+    int redArray[256];
+    int greenArray[256];
+    int blueArray[256];
+    int cumulative[256];
+
+    float calcCDF(int h[], float cdf[]);
 };
 
 #endif // IMAGEDATA_H

@@ -9,6 +9,7 @@
 #include <QButtonGroup>
 #include <QComboBox>
 
+#include "glwidget.h"
 #include "imagedata.h"
 
 
@@ -34,10 +35,13 @@ private slots:
 private:
     void createActions();
     void createMenus();
-    void greyScaleHisto(ImageData histoInfo);
-    void redHisto(int left);
-    void greenHisto(int left);
-    void blueHisto(int left);
+    void greyScaleHisto(ImageData *dataRef);
+    void colorHisto(ImageData *dataRef, int colour);
+    void graphHisto(int workingColor[], bool left);
+
+
+    /*void greenHisto(int left);
+    void blueHisto(int left); */
 
     QWidget *centralWidget;
 
@@ -45,6 +49,9 @@ private:
     QScrollArea *imageArea2;
     QLabel *imageLabel;
     QLabel *imageLabel2;
+
+    GLWidget *histo1;
+    GLWidget *histo2;
 
     QLabel *statsDisplay;
     QLabel *statsDisplay2;
